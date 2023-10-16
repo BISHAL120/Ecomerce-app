@@ -1,0 +1,140 @@
+.hero-section1 {
+  background-color: rgba(242, 240, 241, 1);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hero-detail {
+  width: 40%;
+  padding-top: 100px;
+  text-align: start;
+}
+
+.hero-number {
+  color: #000;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.hero-detail h1 {
+  color: #000;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 64px;
+}
+
+.hero-detail button {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  width: 210px;
+  height: 52px;
+  border-radius: 62px;
+  background: #000;
+  margin-top: 32px;
+}
+
+.hero-img {
+  width: 50%;
+}
+
+.hero-img {
+  height: 750px;
+
+  overflow: hidden;
+}
+
+.line {
+  width: 1px;
+  height: 55px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.hero-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-section2 {
+  background-color: #000;
+}
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 15px;
+  justify-content: space-between;
+}
+.logos div {
+  padding: 45px 0;
+}
+.carts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 50px;
+  justify-items: center;
+}
+.arraival {
+  color: #000;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  padding-bottom: 30px;
+}
+.slider {
+  padding: 80px 0;
+}
+.viewAll-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.viewAll-btn button {
+  width: 218px;
+  height: 52px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 54px;
+  border-radius: 62px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.slick-dots {
+  display: none !important;
+}
+
+/* ---------------------------- Mobile css start from here -------------------------- */
+
+/* ---------------------------- Mobile css start from here -------------------------- */
+
+/* ---------------------------- Mobile css start from here -------------------------- */
+
+@media screen and (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+  }
+  .hero-detail {
+    width: 100%;
+    padding-top: 25px;
+  }
+  .hero-detail h1 {
+    font-size: 45px;
+    line-height: 50PX;
+  }
+  .hero-detail p {
+    margin-top: 30px;
+  }
+  .line {
+    display: none;
+  }
+  .hero-img {
+    height: 400px;
+    width: 100%;
+  }
+  .hero-img img {
+    height: auto;
+    width: 100%;
+  }
+}
