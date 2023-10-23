@@ -1,17 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Hero.css";
 import Slider from "react-slick";
 import myContext from "../../context/data/myContext";
 import NewArraival from "../New Arraival/NewArraival";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const settings = {
     dots: false,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
@@ -47,11 +47,23 @@ const Hero = () => {
     ],
   };
 
-  const Tshart = useContext(myContext);
+  const {tshart} = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [tshart])
+
+  const [Tshart, setTshart] = useState([]);
+  // const Tshart = useContext(myContext);
   const navigate = useNavigate();
   const navigateTshart = () => {
-    navigate("/tshart/#");
+    navigate("/tshart");
   };
+
+  const url = `http://localhost:5000/tsharts`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => setTshart(data));
 
   return (
     <div>
@@ -66,7 +78,7 @@ const Hero = () => {
                   garments, designed to bring out your individuality and cater
                   to your sense of style.
                 </p>
-                <button>Shop Now</button>
+                <button onClick={navigateTshart}>Shop Now</button>
                 <div className=" d-flex flex-wrap justify-content-between flex-lg-row mt-lg-5 gap-lg-3 align-items-lg-center  ">
                   <p>
                     <span className="hero-number">200 +</span> <br />
@@ -216,7 +228,7 @@ const Hero = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section className="hero-section3">
         <div className="container-xxl">
           <div className="row mx-auto py-5">
             <div className="slider">
@@ -239,7 +251,7 @@ const Hero = () => {
                 </h2>
                 <Slider {...settings}>
                   {Tshart.map((tshart) => (
-                    <NewArraival key={tshart.id} tshart={tshart}></NewArraival>
+                    <NewArraival key={tshart._id} tshart={tshart}></NewArraival>
                   ))}
                 </Slider>
               </div>
@@ -250,7 +262,87 @@ const Hero = () => {
               </div>
             </div>
           </div>
+          <hr style={{ marginTop: "50px" }} />
         </div>
+      </section>
+      <section className="hero-section4">
+        <div className="container-xxl">
+          <div className="row">
+            <div className="top-selling">
+              <h1 className="arraival">
+                <span style={{ color: "#ffc107" }}>T</span>
+                <span style={{ color: "#ffc107" }}>O</span>
+                <span style={{ color: "#20c997" }}>P</span>
+                <span> </span>
+                <span style={{ color: "#75b798" }}>S</span>
+                <span style={{ color: "#e0cffc" }}>E</span>
+                <span style={{ color: "#c29ffa" }}>L</span>
+                <span style={{ color: "#a370f7" }}>L</span>
+                <span style={{ color: "#8540f5" }}>I</span>
+                {/* <span> </span> */}
+                <span style={{ color: "#6610f2" }}>N</span>
+                {/* <span style={{ color: "#520dc2" }}>A</span> */}
+                <span style={{ color: "#0d6efd" }}>G</span>
+              </h1>
+              <div className="top-selling-slider">
+                <Slider {...settings}>
+                  {Tshart.map((tshart) => (
+                    <NewArraival key={tshart._id} tshart={tshart}></NewArraival>
+                  ))}
+                </Slider>
+              </div>
+            </div>
+            <div className="top-selling-btn">
+              <div className="viewAll-btn">
+                <button onClick={navigateTshart}>View All</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="hero-section5">
+              <div className=" container-xxl ">
+                <div className="row">
+                  <div className="fashion-by-Style">
+                    <div className="style">
+                      <h1>BROWSE BY DRESS STYLE</h1>
+                      <div className="Collections">
+                        <div className="collection">
+                            <img src="/Images/image 11.png" alt="" />
+                            <h2>Casual</h2>
+                        </div>
+                        <div className="collection">
+                            <img src="/Images/image 12.png" alt="" />
+                            <h2>Formal</h2>
+                        </div>
+                        <div className="collection">
+                            <img src="/Images/image 13.png" alt="" />
+                            <h2>Party</h2>
+                        </div>
+                        <div className="collection">
+                            <img src="/Images/image 14.png" alt="" />
+                            <h2>Gym</h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      </section>
+      <section className="hero-section6">
+          <div className="container-xxl">
+            <div className="row">
+              <div className="newsletter">
+                <div className="newsletter-detail">
+                  <h1>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h1>
+                </div>
+                <div className="subscribtion">
+                    <input placeholder="Enter Your Email Address" type="text" />
+                    <button>Subscribe To Newsletter</button>
+                </div>
+              </div>
+            </div>
+          </div>
       </section>
     </div>
   );

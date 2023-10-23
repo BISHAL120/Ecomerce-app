@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import './TshartPage.css'
-import { useContext, useState } from "react";
-import myContext from "../../context/data/myContext";
+import { useState } from "react";
 import NewArraival from "../New Arraival/NewArraival";
 import { useLocation } from "react-router-dom";
 
@@ -14,7 +13,15 @@ const TshartPage = () => {
     window.scrollTo(0, 0); // Scroll to the top of the page on route change
   }, [tshart]);
 
-  const Tsharts = useContext(myContext);
+  // const Tsharts = useContext(myContext);
+
+  const [Tsharts, setTsharts] = useState([]);
+
+  useEffect( () => {
+    fetch(`http://localhost:5000/tsharts`)
+    .then(res => res.json())
+    .then(data => setTsharts(data));
+  },[])
 
   const [curentPage, setCurentPage] = useState(1);
   const productPerPage = 9;

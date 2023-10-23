@@ -1,16 +1,24 @@
-import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
-import myContext from "../context/data/myContext";
+import React, { useContext, useEffect, useState } from "react";
+import { json, useParams } from "react-router-dom";
 import { AiOutlineMinus } from "react-icons/ai";
 import "./Product.css";
 
 const Product = () => {
-  const Tsharts = useContext(myContext);
   const { id } = useParams();
-  const productId = parseInt(id);
 
-  const product = Tsharts.find((tshart) => tshart.id === productId);
-  const [mainimg, setMainimg] = useState(product.img.img1);
+  const [tsharts, setTsharts] = useState({});
+
+  useEffect(() => {
+    const url = `http://localhost:5000/tsharts/${id}`
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setTsharts(data));
+  }, []);
+
+  
+  // const product = tsharts.find((tshart) => tshart.id === id);
+  const [mainimg, setMainimg] = useState(tsharts.img1);
   const [discount, setDiscount] = useState(20);
   const [size, setSize] = useState(false);
   const [size2, setSize2] = useState(false);
@@ -18,25 +26,15 @@ const Product = () => {
   const [size4, setSize4] = useState(false);
   const [number, setNumber] = useState(0);
 
-  const Discount = product.price * (discount / 100);
-  let DiscountPrice = product.price - Discount;
+  const Discount = tsharts.price * (discount / 100);
+  let DiscountPrice = tsharts.price - Discount;
   const sizeReset = () => {
     setSize(false);
     setSize2(false);
     setSize3(false);
     setSize4(false);
   };
-  // const sizeReset2 = () => {
-  //   if (size) {
-  //     setSize(false);
-  //   } else if (size2) {
-  //     setSize2(false);
-  //   } else if (size3) {
-  //     setSize3(false);
-  //   } else if (size4) {
-  //     setSize4(false);
-  //   }
-  // };
+
   const minus = () => {
     if (number > 0) {
       setNumber(number - 1);
@@ -45,54 +43,54 @@ const Product = () => {
 
   return (
     <div>
-      <div className="container-xxl">
+       <div className="container-xxl">
         <div className="row py-4">
           <div className="product">
             <div className="product-img-div">
               <div className="other-img">
                 <div
-                  onClick={() => setMainimg(product.img.img1)}
+                  onClick={() => setMainimg(tsharts.img1)}
                   className="oth-img"
                 >
-                  <img src={product.img.img1} alt="images varient" />
+                  <img src={tsharts.img1} alt="images varient" />
                 </div>
                 <div
-                  onClick={() => setMainimg(product.img.img2)}
+                  onClick={() => setMainimg(tsharts.img2)}
                   className="oth-img"
                 >
-                  <img src={product.img.img2} alt="images varient" />
+                  <img src={tsharts.img2} alt="images varient" />
                 </div>
                 <div
-                  onClick={() => setMainimg(product.img.img3)}
+                  onClick={() => setMainimg(tsharts.img3)}
                   className="oth-img"
                 >
-                  <img src={product.img.img3} alt="images varient" />
+                  <img src={tsharts.img3} alt="images varient" />
                 </div>
               </div>
               <div className="main-img">
-                <img src={mainimg} alt="" />
+                <img src={mainimg} alt="Main img" />
               </div>
             </div>
             <div className="product-detail-div">
               <div className="heading">
-                <h1>{product.tittle}</h1>
+                <h1>{tsharts.tittle}</h1>
               </div>
               <div>
-                <p>Ratting: {product.rating}/5</p>
+                <p>Ratting: {tsharts.rating}/5</p>
               </div>
               <div className="price">
                 <div className="curentPrice">
                   <p>${DiscountPrice.toFixed(2)}</p>
                 </div>
                 <div className="PreviousPrice">
-                  <p>${product.price}</p>
+                  <p>${tsharts.price}</p>
                 </div>
                 <div className="discount">
                   <p>-{discount}%</p>
                 </div>
               </div>
               <div className="description">
-                <p>{product.discription}</p>
+                <p>{tsharts.discription}</p>
               </div>
               <div className="size">
                 <p>Choose Size</p>
@@ -160,6 +158,7 @@ const Product = () => {
       </div>
     </div>
   );
+  
 };
 
 export default Product;
