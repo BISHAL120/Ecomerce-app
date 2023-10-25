@@ -1,3 +1,6 @@
+.Product{
+  min-height: 90vh;
+}
 .product {
   display: flex;
   gap: 45px;
@@ -124,9 +127,9 @@
   border: none;
   font-size: 27px;
 }
-.quantity div button:nth-child(1) {
+/* .quantity div button:nth-child(1) {
   font-size: 23px;
-}
+} */
 .AddTocart {
   width: 55%;
 }

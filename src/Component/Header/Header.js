@@ -38,6 +38,12 @@ const Header = () => {
                                         <li>
                                             <Link className="dropdown-item" to="/shoes">Shoes</Link>
                                         </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/addproduct">Add Product</Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/manage">Manage Product</Link>
+                                        </li>
                                     </ul>
                                 </div>
                                 <Link to="/">On Sale</Link>

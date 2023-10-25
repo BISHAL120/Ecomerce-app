@@ -171,7 +171,16 @@
   gap: 20px;
   width: 35%;
 }
-.subscribtion input, button {
+.subscribtion input {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 29px;
+  border-radius: 62px;
+  background: #fff;
+  border: none;
+  outline: none;
+}
+.subscribtion button {
   font-size: 16px;
   font-weight: 600;
   padding: 12px 29px;

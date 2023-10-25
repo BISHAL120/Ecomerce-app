@@ -42,7 +42,7 @@ const Product = () => {
   };
 
   return (
-    <div>
+    <div className="Product">
        <div className="container-xxl">
         <div className="row py-4">
           <div className="product">
